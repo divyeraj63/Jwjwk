@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rishika - A Journey Through Our Galaxy</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,17 +14,17 @@
         }
 
         body {
-            overflow-x: hidden;
-            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: #000;
+            overflow-x: hidden;
         }
 
-        .galaxy-background {
+        .stars-bg {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
             background: radial-gradient(ellipse at 50% 50%, #0a0020 0%, #000 100%);
             z-index: 0;
         }
@@ -32,291 +34,300 @@
             top: 0;
             left: 0;
             z-index: 1;
-            display: block;
-        }
-
-        /* ===== LOGIN SCREEN ===== */
-        .login-screen {
-            position: fixed;
             width: 100%;
             height: 100%;
-            z-index: 999;
+        }
+
+        /* ========== LOGIN PAGE ========== */
+        #loginContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 999;
             background: radial-gradient(ellipse at 50% 50%, #0a0020 0%, #000 100%);
-            backdrop-filter: blur(10px);
         }
 
-        .login-screen.hidden {
+        #loginContainer.hidden {
             display: none;
         }
 
-        .login-container {
-            background: rgba(10, 10, 40, 0.95);
-            border: 2px solid rgba(138, 43, 226, 0.6);
-            border-radius: 30px;
-            padding: 50px;
-            max-width: 450px;
+        .login-box {
+            background: rgba(15, 15, 50, 0.9);
+            border: 2px solid rgba(138, 43, 226, 0.7);
+            border-radius: 35px;
+            padding: 60px 50px;
+            max-width: 500px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 0 60px rgba(138, 43, 226, 0.4), inset 0 0 60px rgba(138, 43, 226, 0.05);
+            box-shadow: 0 0 80px rgba(138, 43, 226, 0.5), inset 0 0 60px rgba(138, 43, 226, 0.1);
             backdrop-filter: blur(20px);
         }
 
-        .login-container h1 {
-            font-size: 3em;
+        .login-box h1 {
+            font-size: 3.5em;
+            font-weight: 800;
             background: linear-gradient(135deg, #ff69b4, #ff1493, #c71585);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 15px;
-            letter-spacing: 2px;
-            font-weight: 700;
+            letter-spacing: 3px;
         }
 
-        .login-container p {
+        .login-box .tagline {
+            font-size: 1.2em;
             color: #b0e0e6;
-            font-size: 1.1em;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             font-weight: 300;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 30px;
-        }
-
-        .input-group label {
-            display: block;
-            color: #ff69b4;
-            font-size: 0.95em;
-            margin-bottom: 10px;
-            font-weight: 600;
             letter-spacing: 1px;
         }
 
-        .input-group input {
-            width: 100%;
-            padding: 15px 20px;
-            background: rgba(138, 43, 226, 0.1);
-            border: 2px solid rgba(138, 43, 226, 0.3);
-            border-radius: 15px;
-            color: #fff;
+        .form-group {
+            margin-bottom: 35px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ff69b4;
             font-size: 1em;
-            transition: all 0.3s ease;
-            outline: none;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 18px 25px;
+            background: rgba(138, 43, 226, 0.12);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 18px;
+            color: #fff;
+            font-size: 1.1em;
             font-family: 'Poppins', sans-serif;
-            letter-spacing: 0.5px;
+            outline: none;
+            transition: all 0.4s ease;
+            letter-spacing: 1px;
         }
 
-        .input-group input:focus {
-            background: rgba(138, 43, 226, 0.2);
-            border-color: rgba(138, 43, 226, 0.8);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+        .form-group input:focus {
+            background: rgba(138, 43, 226, 0.25);
+            border-color: rgba(255, 105, 180, 0.8);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);
         }
 
-        .input-group input::placeholder {
+        .form-group input::placeholder {
             color: rgba(176, 224, 230, 0.5);
         }
 
         .login-btn {
             width: 100%;
-            padding: 15px;
+            padding: 16px 30px;
             background: linear-gradient(135deg, #ff69b4, #ff1493);
             border: none;
-            border-radius: 15px;
+            border-radius: 18px;
             color: #fff;
             font-size: 1.1em;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
-            margin-bottom: 15px;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
         .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(255, 105, 180, 0.7);
+            transform: translateY(-3px);
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.8);
         }
 
         .login-btn:active {
-            transform: translateY(0);
+            transform: translateY(-1px);
         }
 
-        .error-message {
+        .error-msg {
             color: #ff6b9d;
-            font-size: 0.9em;
-            margin-top: 15px;
+            font-size: 0.95em;
             display: none;
-            animation: shake 0.5s ease-in-out;
+            animation: shake 0.5s;
+            font-weight: 600;
+            margin-top: 15px;
         }
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
         }
 
-        /* ===== MAIN CONTENT ===== */
-        .container {
+        /* ========== MAIN CONTENT ========== */
+        #mainContent {
             position: relative;
             z-index: 2;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
+            display: none;
         }
 
-        .header {
-            padding: 60px 20px;
-            text-align: center;
-            color: #fff;
+        #mainContent.visible {
+            display: block;
+        }
+
+        .header-section {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 60px 20px;
+            text-align: center;
         }
 
-        .header h1 {
-            font-size: 4em;
-            margin-bottom: 20px;
+        .header-section .badge {
+            font-size: 1.3em;
+            color: #ff69b4;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-section h1 {
+            font-size: 4.5em;
+            font-weight: 800;
             background: linear-gradient(135deg, #ff69b4, #ff1493, #c71585);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            letter-spacing: 2px;
-            font-weight: 800;
-        }
-
-        .header .subtitle {
-            font-size: 1.5em;
-            color: #ff69b4;
             margin-bottom: 15px;
-            font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
-        .header p {
-            font-size: 1.2em;
+        .header-section p {
+            font-size: 1.3em;
             color: #b0e0e6;
-            margin-top: 10px;
+            margin-top: 15px;
             font-weight: 300;
         }
 
-        .stars-section {
+        .stars-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 60px 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 45px;
+            padding: 70px 50px;
             max-width: 1400px;
-            width: 100%;
             margin: 0 auto;
+            width: 100%;
         }
 
-        .star-card {
-            background: rgba(20, 20, 60, 0.5);
-            border: 2px solid rgba(138, 43, 226, 0.4);
-            border-radius: 25px;
-            padding: 30px;
+        .star-item {
+            background: rgba(20, 20, 70, 0.5);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 30px;
+            padding: 35px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.25);
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-            min-height: 450px;
+            min-height: 480px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .star-card::before {
+        .star-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.2), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.3), transparent);
+            transition: left 0.6s;
         }
 
-        .star-card:hover::before {
+        .star-item:hover::before {
             left: 100%;
         }
 
-        .star-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 0 50px rgba(255, 105, 180, 0.6);
-            border-color: rgba(255, 105, 180, 0.8);
-            background: rgba(20, 20, 60, 0.7);
+        .star-item:hover {
+            transform: translateY(-20px) scale(1.08);
+            box-shadow: 0 0 60px rgba(255, 105, 180, 0.7);
+            border-color: rgba(255, 105, 180, 0.9);
+            background: rgba(20, 20, 70, 0.8);
         }
 
-        .star-icon {
-            font-size: 4.5em;
-            margin-bottom: 15px;
-            display: inline-block;
-            animation: float 3s ease-in-out infinite;
+        .star-emoji {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
         }
 
-        .star-card:nth-child(1) .star-icon { animation-delay: 0s; }
-        .star-card:nth-child(2) .star-icon { animation-delay: 0.4s; }
-        .star-card:nth-child(3) .star-icon { animation-delay: 0.8s; }
-        .star-card:nth-child(4) .star-icon { animation-delay: 1.2s; }
-        .star-card:nth-child(5) .star-icon { animation-delay: 1.6s; }
+        .star-item:nth-child(1) .star-emoji { animation-delay: 0s; }
+        .star-item:nth-child(2) .star-emoji { animation-delay: 0.4s; }
+        .star-item:nth-child(3) .star-emoji { animation-delay: 0.8s; }
+        .star-item:nth-child(4) .star-emoji { animation-delay: 1.2s; }
+        .star-item:nth-child(5) .star-emoji { animation-delay: 1.6s; }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
         }
 
         .star-title {
-            font-size: 1.6em;
+            font-size: 1.7em;
             color: #ff69b4;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             font-weight: 700;
             letter-spacing: 1px;
         }
 
-        .star-description {
-            font-size: 0.95em;
+        .star-text {
+            font-size: 1em;
             color: #b0e0e6;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 25px;
+            line-height: 1.7;
             flex-grow: 1;
+            font-weight: 300;
         }
 
         .view-btn {
-            padding: 12px 25px;
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(255, 105, 180, 0.3));
-            border: 2px solid rgba(138, 43, 226, 0.6);
-            border-radius: 12px;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.4), rgba(255, 105, 180, 0.4));
+            border: 2px solid rgba(138, 43, 226, 0.7);
+            border-radius: 14px;
             color: #ff69b4;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.95em;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
         }
 
         .view-btn:hover {
-            background: linear-gradient(135deg, rgba(138, 43, 226, 0.6), rgba(255, 105, 180, 0.6));
-            border-color: rgba(255, 105, 180, 0.8);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.7), rgba(255, 105, 180, 0.7));
+            border-color: rgba(255, 105, 180, 0.9);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.5);
         }
 
         .music-section {
-            width: 100%;
-            background: rgba(10, 10, 40, 0.6);
-            padding: 60px 20px;
+            background: rgba(15, 15, 50, 0.6);
+            padding: 80px 30px;
             text-align: center;
-            border-top: 2px solid rgba(138, 43, 226, 0.3);
-            margin-top: 60px;
+            border-top: 2px solid rgba(138, 43, 226, 0.4);
+            margin-top: 80px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -325,93 +336,62 @@
         }
 
         .music-title {
-            font-size: 2.5em;
+            font-size: 3em;
             color: #ff69b4;
-            margin-bottom: 40px;
-            font-weight: 700;
+            margin-bottom: 50px;
+            font-weight: 800;
             letter-spacing: 2px;
         }
 
-        .spotify-embed {
+        .spotify-frame {
             display: inline-block;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 0 40px rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 50px rgba(138, 43, 226, 0.6);
         }
 
-        .final-message {
-            text-align: center;
-            padding: 60px 40px;
-            color: #b0e0e6;
-            font-size: 1.3em;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.8;
+        .final-section {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-weight: 300;
+            padding: 60px 40px;
+            text-align: center;
         }
 
-        .final-message h2 {
-            font-size: 2.5em;
+        .final-msg {
+            max-width: 700px;
+            color: #b0e0e6;
+        }
+
+        .final-msg h2 {
+            font-size: 3em;
             color: #ff69b4;
-            margin-bottom: 30px;
-            font-weight: 700;
+            margin-bottom: 35px;
+            font-weight: 800;
             letter-spacing: 1px;
         }
 
-        .final-message .heart {
+        .final-msg p {
+            font-size: 1.3em;
+            line-height: 1.9;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .heart {
             color: #ff69b4;
-            font-size: 2em;
-            animation: heartbeat 1.5s ease-in-out infinite;
+            font-size: 2.2em;
+            animation: beat 1.5s infinite;
             display: inline-block;
         }
 
-        @keyframes heartbeat {
+        @keyframes beat {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.3); }
         }
 
-        @media (max-width: 768px) {
-            .login-container {
-                padding: 40px 25px;
-            }
-
-            .login-container h1 {
-                font-size: 2.2em;
-            }
-
-            .header h1 {
-                font-size: 2.5em;
-            }
-
-            .header .subtitle {
-                font-size: 1.1em;
-            }
-
-            .stars-section {
-                grid-template-columns: 1fr;
-                padding: 30px 20px;
-                gap: 30px;
-            }
-
-            .star-card {
-                padding: 25px;
-            }
-
-            .final-message h2 {
-                font-size: 1.8em;
-            }
-
-            .final-message {
-                font-size: 1.1em;
-            }
-        }
-
-        /* ===== MODAL ===== */
+        /* ========== MODAL ========== */
         .modal {
             display: none;
             position: fixed;
@@ -420,355 +400,334 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
-            overflow: auto;
         }
 
-        .modal.show {
+        .modal.active {
             display: flex;
         }
 
-        .modal-content {
-            background: rgba(10, 10, 40, 0.95);
-            border: 2px solid rgba(138, 43, 226, 0.6);
-            border-radius: 30px;
-            padding: 40px;
-            max-width: 550px;
+        .modal-box {
+            background: rgba(15, 15, 50, 0.95);
+            border: 2px solid rgba(138, 43, 226, 0.7);
+            border-radius: 35px;
+            padding: 45px;
+            max-width: 600px;
             width: 90%;
             text-align: center;
             color: #b0e0e6;
-            box-shadow: 0 0 60px rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 70px rgba(138, 43, 226, 0.6);
             margin: auto;
         }
 
-        .modal-content h2 {
+        .modal-box h2 {
             color: #ff69b4;
-            margin-bottom: 25px;
-            font-size: 2.2em;
-            font-weight: 700;
+            margin-bottom: 30px;
+            font-size: 2.3em;
+            font-weight: 800;
             letter-spacing: 1px;
         }
 
-        .modal-photo {
+        .modal-img {
             width: 100%;
-            height: 350px;
+            height: 380px;
             background: linear-gradient(135deg, #1a0033, #2d0a4e);
-            border-radius: 20px;
-            margin-bottom: 25px;
+            border-radius: 25px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(138, 43, 226, 0.4);
             overflow: hidden;
-            font-size: 3em;
+            font-size: 4em;
         }
 
-        .modal-photo img {
+        .modal-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .modal-text {
+        .modal-desc {
             font-size: 1.15em;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            font-weight: 300;
+            line-height: 1.85;
+            margin-bottom: 30px;
             color: #b0e0e6;
+            font-weight: 300;
         }
 
-        .close-modal {
+        .close-btn {
             background: linear-gradient(135deg, #ff69b4, #ff1493);
             color: #fff;
             border: none;
-            padding: 13px 30px;
-            border-radius: 12px;
+            padding: 15px 40px;
+            border-radius: 16px;
             cursor: pointer;
             font-size: 1em;
             font-weight: 700;
+            letter-spacing: 1.5px;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
             transition: all 0.3s ease;
-            letter-spacing: 1px;
-            box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+            box-shadow: 0 0 25px rgba(255, 105, 180, 0.5);
         }
 
-        .close-modal:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 40px rgba(255, 105, 180, 0.7);
+        .close-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 45px rgba(255, 105, 180, 0.8);
         }
 
-        .scroll-hint {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255, 105, 180, 0.5);
-            animation: bounce 2.5s infinite;
-            z-index: 10;
-            font-size: 1.1em;
-            font-weight: 600;
-        }
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 45px 30px;
+            }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-15px); }
+            .login-box h1 {
+                font-size: 2.5em;
+            }
+
+            .header-section h1 {
+                font-size: 2.8em;
+            }
+
+            .stars-grid {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+
+            .star-item {
+                padding: 28px;
+            }
+
+            .final-msg h2 {
+                font-size: 2em;
+            }
+
+            .final-msg p {
+                font-size: 1.1em;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- LOGIN SCREEN -->
-    <div class="login-screen" id="loginScreen">
-        <div class="login-container">
+    <div class="stars-bg"></div>
+    <canvas id="canvas"></canvas>
+
+    <!-- LOGIN PAGE -->
+    <div id="loginContainer">
+        <div class="login-box">
             <h1>Rishika</h1>
-            <p>A Journey Through Our Galaxy</p>
-            
-            <div class="input-group">
-                <label for="nameInput">Enter Your Name</label>
-                <input type="text" id="nameInput" placeholder="Your name..." autocomplete="off">
+            <div class="tagline">A Journey Through Our Galaxy</div>
+
+            <div class="form-group">
+                <label for="nameField">Your Name</label>
+                <input type="text" id="nameField" placeholder="Enter your name..." autocomplete="off">
             </div>
 
-            <div class="input-group">
-                <label for="passInput">Enter The Code</label>
-                <input type="password" id="passInput" placeholder="••••" autocomplete="off">
+            <div class="form-group">
+                <label for="codeField">Secret Code</label>
+                <input type="password" id="codeField" placeholder="Enter the code..." autocomplete="off">
             </div>
 
-            <button class="login-btn" onclick="checkAccess()">UNLOCK</button>
-            
-            <div class="error-message" id="errorMsg">
-                ✗ Incorrect name or code. Please try again.
-            </div>
+            <button class="login-btn" onclick="handleLogin()">UNLOCK</button>
+            <div class="error-msg" id="errorMsg">✗ Invalid Name or Code</div>
         </div>
     </div>
 
     <!-- MAIN CONTENT -->
-    <div class="galaxy-background"></div>
-    <canvas id="galaxyCanvas"></canvas>
-    
-    <div class="container" id="mainContent" style="display: none;">
-        <div class="header">
-            <div class="subtitle">✨ HAPPY BIRTHDAY ✨</div>
+    <div id="mainContent">
+        <div class="header-section">
+            <div class="badge">✨ HAPPY BIRTHDAY ✨</div>
             <h1>Rishika</h1>
             <p>A Journey Through Our Galaxy</p>
         </div>
 
-        <div class="stars-section">
-            <div class="star-card" onclick="openModal(0)">
+        <div class="stars-grid">
+            <div class="star-item" onclick="showModal(0)">
                 <div>
-                    <div class="star-icon">⭐</div>
+                    <div class="star-emoji">⭐</div>
                     <div class="star-title">Your Beauty</div>
-                    <div class="star-description">Elegance and grace in every moment</div>
+                    <div class="star-text">Elegance and grace in every moment</div>
                 </div>
-                <button class="view-btn">VIEW MOMENT</button>
+                <button class="view-btn">View Memory</button>
             </div>
 
-            <div class="star-card" onclick="openModal(1)">
+            <div class="star-item" onclick="showModal(1)">
                 <div>
-                    <div class="star-icon">💫</div>
+                    <div class="star-emoji">💫</div>
                     <div class="star-title">Just Us</div>
-                    <div class="star-description">Two hearts, infinite love</div>
+                    <div class="star-text">Two hearts, infinite love</div>
                 </div>
-                <button class="view-btn">VIEW MOMENT</button>
+                <button class="view-btn">View Memory</button>
             </div>
 
-            <div class="star-card" onclick="openModal(2)">
+            <div class="star-item" onclick="showModal(2)">
                 <div>
-                    <div class="star-icon">🌟</div>
+                    <div class="star-emoji">🌟</div>
                     <div class="star-title">Perfect Moments</div>
-                    <div class="star-description">Every smile means everything to me</div>
+                    <div class="star-text">Every smile means everything to me</div>
                 </div>
-                <button class="view-btn">VIEW MOMENT</button>
+                <button class="view-btn">View Memory</button>
             </div>
 
-            <div class="star-card" onclick="openModal(3)">
+            <div class="star-item" onclick="showModal(3)">
                 <div>
-                    <div class="star-icon">✨</div>
+                    <div class="star-emoji">✨</div>
                     <div class="star-title">My Everything</div>
-                    <div class="star-description">You complete my universe</div>
+                    <div class="star-text">You complete my universe</div>
                 </div>
-                <button class="view-btn">VIEW MOMENT</button>
+                <button class="view-btn">View Memory</button>
             </div>
 
-            <div class="star-card" onclick="openModal(4)">
+            <div class="star-item" onclick="showModal(4)">
                 <div>
-                    <div class="star-icon">💖</div>
+                    <div class="star-emoji">💖</div>
                     <div class="star-title">Forever Yours</div>
-                    <div class="star-description">My heart chose you before my mind caught up</div>
+                    <div class="star-text">My heart chose you before my mind caught up</div>
                 </div>
-                <button class="view-btn">VIEW MOMENT</button>
+                <button class="view-btn">View Memory</button>
             </div>
         </div>
 
         <div class="music-section">
             <div class="music-title">🎵 OUR SONG 🎵</div>
-            <div class="spotify-embed">
+            <div class="spotify-frame">
                 <iframe style="border-radius:20px" src="https://open.spotify.com/embed/track/1hQia6rxgfM1ly2hE3StWp?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </div>
 
-        <div class="final-message">
-            <div>
+        <div class="final-section">
+            <div class="final-msg">
                 <h2>Happy Birthday, Rishika</h2>
-                <p style="margin-bottom: 30px;">You make every moment magical, every day brighter, and every dream possible.</p>
-                <p style="margin-bottom: 25px;">Thank you for being the love of my life.</p>
+                <p>You make every moment magical, every day brighter, and every dream possible.</p>
+                <p>Thank you for being the love of my life.</p>
                 <p>Forever yours, <span class="heart">❤️</span></p>
             </div>
         </div>
     </div>
 
     <!-- MODAL -->
-    <div id="photoModal" class="modal">
-        <div class="modal-content">
-            <h2 id="modalTitle">Star Name</h2>
-            <div class="modal-photo" id="modalPhoto">
-                💕
-            </div>
-            <div class="modal-text" id="modalText">Your special memory</div>
-            <button class="close-modal" onclick="closeModal()">CLOSE</button>
+    <div class="modal" id="modal">
+        <div class="modal-box">
+            <h2 id="modalTitle">Title</h2>
+            <div class="modal-img" id="modalImg">💕</div>
+            <div class="modal-desc" id="modalDesc">Description</div>
+            <button class="close-btn" onclick="closeModal()">CLOSE</button>
         </div>
     </div>
 
-    <div class="scroll-hint">↓ SCROLL TO EXPLORE ↓</div>
-
     <script>
-        const starData = [
+        const messages = [
             {
                 title: "Your Beauty",
-                message: "You are absolutely stunning in every way. Your elegance and grace take my breath away every single day. The way you carry yourself with such poise and confidence makes you even more beautiful."
+                text: "You are absolutely stunning in every way. Your elegance and grace take my breath away every single day. The way you carry yourself makes you even more beautiful to me."
             },
             {
                 title: "Just Us",
-                message: "In these precious moments, it's just you and me. Two hearts beating as one, forever connected. These are the moments I cherish the most and will remember forever."
+                text: "In these precious moments, it's just you and me. Two hearts beating as one, forever connected. These are the moments I cherish the most and will remember forever."
             },
             {
                 title: "Perfect Moments",
-                message: "Every single moment with you is perfect. Your smile, your laugh, your presence—everything makes my heart skip a beat. These are the moments that make life worth living."
+                text: "Every single moment with you is perfect. Your smile, your laugh, your presence—everything makes my heart skip a beat. These are the moments that make life worth living."
             },
             {
                 title: "My Everything",
-                message: "You complete my universe in ways I could never explain. Without you, my world would be incomplete. You are my everything, my reason, my purpose."
+                text: "You complete my universe in ways I could never explain. Without you, my world would be incomplete. You are my everything, my reason, my purpose."
             },
             {
                 title: "Forever Yours",
-                message: "My heart chose you before my mind caught up. You are my forever person, my soulmate, my everything. I promise to love you forever and always."
+                text: "My heart chose you before my mind caught up. You are my forever person, my soulmate, my everything. I promise to love you forever and always."
             }
         ];
 
-        function checkAccess() {
-            const name = document.getElementById('nameInput').value.trim().toLowerCase();
-            const pass = document.getElementById('passInput').value;
-            const errorMsg = document.getElementById('errorMsg');
+        function handleLogin() {
+            const name = document.getElementById('nameField').value.trim().toLowerCase();
+            const code = document.getElementById('codeField').value;
+            const error = document.getElementById('errorMsg');
 
-            if (name === 'rishika' && pass === '2512') {
-                document.getElementById('loginScreen').classList.add('hidden');
-                document.getElementById('mainContent').style.display = 'flex';
-                initAnimation();
-                errorMsg.style.display = 'none';
+            if (name === 'rishika' && code === '2512') {
+                document.getElementById('loginContainer').classList.add('hidden');
+                document.getElementById('mainContent').classList.add('visible');
+                startAnimation();
+                error.style.display = 'none';
             } else {
-                errorMsg.style.display = 'block';
+                error.style.display = 'block';
                 setTimeout(() => {
-                    errorMsg.style.display = 'none';
-                }, 3000);
+                    error.style.display = 'none';
+                }, 3500);
             }
         }
 
-        document.getElementById('passInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') checkAccess();
+        document.getElementById('codeField').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleLogin();
         });
 
-        document.getElementById('nameInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') document.getElementById('passInput').focus();
+        document.getElementById('nameField').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') document.getElementById('codeField').focus();
         });
 
-        function openModal(index) {
-            const data = starData[index];
-            document.getElementById('modalTitle').textContent = data.title;
-            document.getElementById('modalText').textContent = data.message;
-            document.getElementById('photoModal').classList.add('show');
+        function showModal(idx) {
+            document.getElementById('modalTitle').textContent = messages[idx].title;
+            document.getElementById('modalDesc').textContent = messages[idx].text;
+            document.getElementById('modal').classList.add('active');
         }
 
         function closeModal() {
-            document.getElementById('photoModal').classList.remove('show');
+            document.getElementById('modal').classList.remove('active');
         }
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('photoModal');
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
+        window.onclick = (e) => {
+            const modal = document.getElementById('modal');
+            if (e.target === modal) closeModal();
+        };
 
-        // Galaxy Animation
-        let animationInitialized = false;
+        let animStarted = false;
+        function startAnimation() {
+            if (animStarted) return;
+            animStarted = true;
 
-        function initAnimation() {
-            if (animationInitialized) return;
-            animationInitialized = true;
-
-            const canvas = document.getElementById('galaxyCanvas');
+            const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
-            let particles = [];
-            const particleCount = 250;
-
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.vx = (Math.random() - 0.5) * 0.3;
-                    this.vy = (Math.random() - 0.5) * 0.3;
-                    this.radius = Math.random() * 1.2;
-                    this.opacity = Math.random() * 0.6 + 0.2;
-                    this.twinkleSpeed = Math.random() * 0.025 + 0.01;
-                }
-
-                update() {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    if (this.x < 0) this.x = canvas.width;
-                    if (this.x > canvas.width) this.x = 0;
-                    if (this.y < 0) this.y = canvas.height;
-                    if (this.y > canvas.height) this.y = 0;
-                    this.opacity += this.twinkleSpeed;
-                    if (this.opacity > 0.8 || this.opacity < 0.2) {
-                        this.twinkleSpeed *= -1;
-                    }
-                }
-
-                draw() {
-                    ctx.fillStyle = `rgba(255, 200, 255, ${this.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(particle => {
-                    particle.update();
-                    particle.draw();
+            const particles = [];
+            for (let i = 0; i < 300; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    r: Math.random() * 1.3,
+                    op: Math.random() * 0.6 + 0.2,
+                    ts: Math.random() * 0.03
                 });
-                requestAnimationFrame(animate);
             }
 
-            animate();
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.op += p.ts;
+                    if (p.op > 0.8 || p.op < 0.2) p.ts *= -1;
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+                    if (p.y < 0) p.y = canvas.height;
+                    if (p.y > canvas.height) p.y = 0;
+                    ctx.fillStyle = `rgba(255,200,255,${p.op})`;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
         }
-
-        window.addEventListener('resize', () => {
-            if (animationInitialized) {
-                const canvas = document.getElementById('galaxyCanvas');
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-        });
     </script>
 </body>
 </html>

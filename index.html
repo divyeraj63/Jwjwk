@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Journey Through Our Galaxy ✨</title>
+    <title>Rishika - A Journey Through Our Galaxy</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             overflow-x: hidden;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
             background: #000;
         }
 
@@ -23,7 +23,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(ellipse at 50% 50%, #1a0033 0%, #000 100%);
+            background: radial-gradient(ellipse at 50% 50%, #0a0020 0%, #000 100%);
             z-index: 0;
         }
 
@@ -35,6 +35,131 @@
             display: block;
         }
 
+        /* ===== LOGIN SCREEN ===== */
+        .login-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at 50% 50%, #0a0020 0%, #000 100%);
+            backdrop-filter: blur(10px);
+        }
+
+        .login-screen.hidden {
+            display: none;
+        }
+
+        .login-container {
+            background: rgba(10, 10, 40, 0.95);
+            border: 2px solid rgba(138, 43, 226, 0.6);
+            border-radius: 30px;
+            padding: 50px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 60px rgba(138, 43, 226, 0.4), inset 0 0 60px rgba(138, 43, 226, 0.05);
+            backdrop-filter: blur(20px);
+        }
+
+        .login-container h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #ff69b4, #ff1493, #c71585);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .login-container p {
+            color: #b0e0e6;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #ff69b4;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(138, 43, 226, 0.1);
+            border: 2px solid rgba(138, 43, 226, 0.3);
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group input:focus {
+            background: rgba(138, 43, 226, 0.2);
+            border-color: rgba(138, 43, 226, 0.8);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(176, 224, 230, 0.5);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+            margin-bottom: 15px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.7);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #ff6b9d;
+            font-size: 0.9em;
+            margin-top: 15px;
+            display: none;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* ===== MAIN CONTENT ===== */
         .container {
             position: relative;
             z-index: 2;
@@ -46,11 +171,9 @@
         }
 
         .header {
-            padding: 40px 20px;
+            padding: 60px 20px;
             text-align: center;
             color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            margin-top: 20px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -59,123 +182,141 @@
         }
 
         .header h1 {
-            font-size: 3.5em;
-            margin-bottom: 10px;
+            font-size: 4em;
+            margin-bottom: 20px;
             background: linear-gradient(135deg, #ff69b4, #ff1493, #c71585);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        .header .subtitle {
+            font-size: 1.5em;
+            color: #ff69b4;
+            margin-bottom: 15px;
+            font-weight: 600;
+            letter-spacing: 3px;
         }
 
         .header p {
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: #b0e0e6;
             margin-top: 10px;
+            font-weight: 300;
         }
 
         .stars-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 40px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 60px 40px;
+            max-width: 1400px;
             width: 100%;
             margin: 0 auto;
         }
 
         .star-card {
-            background: rgba(20, 20, 60, 0.6);
-            border: 2px solid rgba(138, 43, 226, 0.5);
-            border-radius: 20px;
-            padding: 20px;
+            background: rgba(20, 20, 60, 0.5);
+            border: 2px solid rgba(138, 43, 226, 0.4);
+            border-radius: 25px;
+            padding: 30px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.2);
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-            min-height: 400px;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .star-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(138, 43, 226, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .star-card:hover::before {
+            left: 100%;
         }
 
         .star-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.6);
             border-color: rgba(255, 105, 180, 0.8);
-            background: rgba(20, 20, 60, 0.8);
+            background: rgba(20, 20, 60, 0.7);
         }
 
         .star-icon {
-            font-size: 4em;
+            font-size: 4.5em;
             margin-bottom: 15px;
             display: inline-block;
-            animation: twinkle 3s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .star-card:nth-child(2) .star-icon {
-            animation-delay: 0.5s;
-        }
+        .star-card:nth-child(1) .star-icon { animation-delay: 0s; }
+        .star-card:nth-child(2) .star-icon { animation-delay: 0.4s; }
+        .star-card:nth-child(3) .star-icon { animation-delay: 0.8s; }
+        .star-card:nth-child(4) .star-icon { animation-delay: 1.2s; }
+        .star-card:nth-child(5) .star-icon { animation-delay: 1.6s; }
 
-        .star-card:nth-child(3) .star-icon {
-            animation-delay: 1s;
-        }
-
-        .star-card:nth-child(4) .star-icon {
-            animation-delay: 1.5s;
-        }
-
-        .star-card:nth-child(5) .star-icon {
-            animation-delay: 2s;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
         .star-title {
-            font-size: 1.5em;
+            font-size: 1.6em;
             color: #ff69b4;
-            margin-bottom: 15px;
-            font-weight: bold;
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .star-description {
-            font-size: 0.9em;
+            font-size: 0.95em;
             color: #b0e0e6;
-            margin-bottom: 15px;
-            min-height: 40px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
         }
 
-        .photo-placeholder {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #1a0033, #2d0a4e);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #b0e0e6;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            border: 1px solid rgba(138, 43, 226, 0.3);
-            overflow: hidden;
+        .view-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(255, 105, 180, 0.3));
+            border: 2px solid rgba(138, 43, 226, 0.6);
+            border-radius: 12px;
+            color: #ff69b4;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            letter-spacing: 1px;
         }
 
-        .photo-placeholder img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
+        .view-btn:hover {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.6), rgba(255, 105, 180, 0.6));
+            border-color: rgba(255, 105, 180, 0.8);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
         }
 
         .music-section {
             width: 100%;
-            background: rgba(20, 20, 60, 0.8);
-            padding: 40px 20px;
+            background: rgba(10, 10, 40, 0.6);
+            padding: 60px 20px;
             text-align: center;
-            border-top: 2px solid rgba(138, 43, 226, 0.5);
-            margin-top: 40px;
+            border-top: 2px solid rgba(138, 43, 226, 0.3);
+            margin-top: 60px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -184,25 +325,26 @@
         }
 
         .music-title {
-            font-size: 2em;
+            font-size: 2.5em;
             color: #ff69b4;
-            margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            margin-bottom: 40px;
+            font-weight: 700;
+            letter-spacing: 2px;
         }
 
         .spotify-embed {
             display: inline-block;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.5);
         }
 
         .final-message {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 40px;
             color: #b0e0e6;
-            font-size: 1.2em;
-            max-width: 600px;
+            font-size: 1.3em;
+            max-width: 700px;
             margin: 0 auto;
             line-height: 1.8;
             min-height: 100vh;
@@ -210,51 +352,66 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            font-weight: 300;
+        }
+
+        .final-message h2 {
+            font-size: 2.5em;
+            color: #ff69b4;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .final-message .heart {
             color: #ff69b4;
-            font-size: 1.5em;
+            font-size: 2em;
             animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
         }
 
         @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.3); }
         }
 
         @media (max-width: 768px) {
+            .login-container {
+                padding: 40px 25px;
+            }
+
+            .login-container h1 {
+                font-size: 2.2em;
+            }
+
             .header h1 {
-                font-size: 2em;
+                font-size: 2.5em;
+            }
+
+            .header .subtitle {
+                font-size: 1.1em;
             }
 
             .stars-section {
                 grid-template-columns: 1fr;
-                padding: 20px;
-                gap: 20px;
+                padding: 30px 20px;
+                gap: 30px;
             }
 
-            .star-icon {
-                font-size: 3em;
+            .star-card {
+                padding: 25px;
+            }
+
+            .final-message h2 {
+                font-size: 1.8em;
+            }
+
+            .final-message {
+                font-size: 1.1em;
             }
         }
 
-        .scroll-hint {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: rgba(255, 105, 180, 0.6);
-            animation: bounce 2s infinite;
-            z-index: 10;
-            font-size: 1.2em;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-
+        /* ===== MODAL ===== */
         .modal {
             display: none;
             position: fixed;
@@ -263,8 +420,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             overflow: auto;
@@ -275,35 +432,38 @@
         }
 
         .modal-content {
-            background: rgba(20, 20, 60, 0.95);
-            border: 2px solid rgba(138, 43, 226, 0.8);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 500px;
+            background: rgba(10, 10, 40, 0.95);
+            border: 2px solid rgba(138, 43, 226, 0.6);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 550px;
             width: 90%;
             text-align: center;
             color: #b0e0e6;
-            box-shadow: 0 0 50px rgba(138, 43, 226, 0.6);
+            box-shadow: 0 0 60px rgba(138, 43, 226, 0.5);
             margin: auto;
         }
 
         .modal-content h2 {
             color: #ff69b4;
-            margin-bottom: 20px;
-            font-size: 2em;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .modal-photo {
             width: 100%;
-            height: 300px;
+            height: 350px;
             background: linear-gradient(135deg, #1a0033, #2d0a4e);
-            border-radius: 15px;
-            margin-bottom: 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(138, 43, 226, 0.3);
+            border: 2px solid rgba(138, 43, 226, 0.3);
             overflow: hidden;
+            font-size: 3em;
         }
 
         .modal-photo img {
@@ -313,137 +473,213 @@
         }
 
         .modal-text {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-weight: 300;
+            color: #b0e0e6;
         }
 
         .close-modal {
-            background: rgba(138, 43, 226, 0.5);
-            color: #ff69b4;
-            border: 1px solid rgba(138, 43, 226, 0.8);
-            padding: 10px 20px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: #fff;
+            border: none;
+            padding: 13px 30px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1em;
+            font-weight: 700;
             transition: all 0.3s ease;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
         }
 
         .close-modal:hover {
-            background: rgba(138, 43, 226, 0.8);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.7);
+        }
+
+        .scroll-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 105, 180, 0.5);
+            animation: bounce 2.5s infinite;
+            z-index: 10;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-15px); }
         }
     </style>
 </head>
 <body>
+    <!-- LOGIN SCREEN -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-container">
+            <h1>Rishika</h1>
+            <p>A Journey Through Our Galaxy</p>
+            
+            <div class="input-group">
+                <label for="nameInput">Enter Your Name</label>
+                <input type="text" id="nameInput" placeholder="Your name..." autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label for="passInput">Enter The Code</label>
+                <input type="password" id="passInput" placeholder="••••" autocomplete="off">
+            </div>
+
+            <button class="login-btn" onclick="checkAccess()">UNLOCK</button>
+            
+            <div class="error-message" id="errorMsg">
+                ✗ Incorrect name or code. Please try again.
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
     <div class="galaxy-background"></div>
     <canvas id="galaxyCanvas"></canvas>
     
-    <div class="container">
+    <div class="container" id="mainContent" style="display: none;">
         <div class="header">
-            <h1>🌌 A Journey Through Our Galaxy 🌌</h1>
-            <p>Click on each star to discover our precious moments</p>
+            <div class="subtitle">✨ HAPPY BIRTHDAY ✨</div>
+            <h1>Rishika</h1>
+            <p>A Journey Through Our Galaxy</p>
         </div>
 
         <div class="stars-section">
             <div class="star-card" onclick="openModal(0)">
-                <div class="star-icon">⭐</div>
-                <div class="star-title">Your Beauty</div>
-                <div class="star-description">Elegance and grace in every moment</div>
-                <div class="photo-placeholder">
-                    <span>✨ Click to see ✨</span>
+                <div>
+                    <div class="star-icon">⭐</div>
+                    <div class="star-title">Your Beauty</div>
+                    <div class="star-description">Elegance and grace in every moment</div>
                 </div>
+                <button class="view-btn">VIEW MOMENT</button>
             </div>
 
             <div class="star-card" onclick="openModal(1)">
-                <div class="star-icon">💫</div>
-                <div class="star-title">Just Us</div>
-                <div class="star-description">Two hearts, infinite love</div>
-                <div class="photo-placeholder">
-                    <span>✨ Click to see ✨</span>
+                <div>
+                    <div class="star-icon">💫</div>
+                    <div class="star-title">Just Us</div>
+                    <div class="star-description">Two hearts, infinite love</div>
                 </div>
+                <button class="view-btn">VIEW MOMENT</button>
             </div>
 
             <div class="star-card" onclick="openModal(2)">
-                <div class="star-icon">🌟</div>
-                <div class="star-title">Perfect Moments</div>
-                <div class="star-description">Every smile means everything to me</div>
-                <div class="photo-placeholder">
-                    <span>✨ Click to see ✨</span>
+                <div>
+                    <div class="star-icon">🌟</div>
+                    <div class="star-title">Perfect Moments</div>
+                    <div class="star-description">Every smile means everything to me</div>
                 </div>
+                <button class="view-btn">VIEW MOMENT</button>
             </div>
 
             <div class="star-card" onclick="openModal(3)">
-                <div class="star-icon">✨</div>
-                <div class="star-title">My Everything</div>
-                <div class="star-description">You complete my universe</div>
-                <div class="photo-placeholder">
-                    <span>✨ Click to see ✨</span>
+                <div>
+                    <div class="star-icon">✨</div>
+                    <div class="star-title">My Everything</div>
+                    <div class="star-description">You complete my universe</div>
                 </div>
+                <button class="view-btn">VIEW MOMENT</button>
             </div>
 
             <div class="star-card" onclick="openModal(4)">
-                <div class="star-icon">💖</div>
-                <div class="star-title">Forever Yours</div>
-                <div class="star-description">My heart chose you before my mind caught up</div>
-                <div class="photo-placeholder">
-                    <span>✨ Click to see ✨</span>
+                <div>
+                    <div class="star-icon">💖</div>
+                    <div class="star-title">Forever Yours</div>
+                    <div class="star-description">My heart chose you before my mind caught up</div>
                 </div>
+                <button class="view-btn">VIEW MOMENT</button>
             </div>
         </div>
 
         <div class="music-section">
-            <div class="music-title">🎵 Our Song 🎵</div>
+            <div class="music-title">🎵 OUR SONG 🎵</div>
             <div class="spotify-embed">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1hQia6rxgfM1ly2hE3StWp?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                <iframe style="border-radius:20px" src="https://open.spotify.com/embed/track/1hQia6rxgfM1ly2hE3StWp?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
         </div>
 
         <div class="final-message">
             <div>
-                <p style="font-size: 2em; margin-bottom: 20px;">Happy Birthday to the brightest star in my sky! 🌟</p>
-                <p style="margin-bottom: 20px;">You make every moment magical, every day brighter, and every dream possible. Thank you for being the love of my life.</p>
-                <p style="margin-bottom: 20px;">Forever yours, <span class="heart">❤️</span></p>
+                <h2>Happy Birthday, Rishika</h2>
+                <p style="margin-bottom: 30px;">You make every moment magical, every day brighter, and every dream possible.</p>
+                <p style="margin-bottom: 25px;">Thank you for being the love of my life.</p>
+                <p>Forever yours, <span class="heart">❤️</span></p>
             </div>
         </div>
     </div>
 
+    <!-- MODAL -->
     <div id="photoModal" class="modal">
         <div class="modal-content">
             <h2 id="modalTitle">Star Name</h2>
-            <div class="modal-photo">
-                <img id="modalPhoto" src="" alt="Our memory">
+            <div class="modal-photo" id="modalPhoto">
+                💕
             </div>
             <div class="modal-text" id="modalText">Your special memory</div>
-            <button class="close-modal" onclick="closeModal()">Close</button>
+            <button class="close-modal" onclick="closeModal()">CLOSE</button>
         </div>
     </div>
 
-    <div class="scroll-hint">↓ Scroll to explore ↓</div>
+    <div class="scroll-hint">↓ SCROLL TO EXPLORE ↓</div>
 
     <script>
         const starData = [
             {
                 title: "Your Beauty",
-                message: "You are absolutely stunning in every way. Your elegance and grace take my breath away every single day. 💕"
+                message: "You are absolutely stunning in every way. Your elegance and grace take my breath away every single day. The way you carry yourself with such poise and confidence makes you even more beautiful."
             },
             {
                 title: "Just Us",
-                message: "In this moment, it's just you and me. Two hearts beating as one, forever connected. 💑"
+                message: "In these precious moments, it's just you and me. Two hearts beating as one, forever connected. These are the moments I cherish the most and will remember forever."
             },
             {
                 title: "Perfect Moments",
-                message: "Every moment with you is perfect. Your smile makes my heart skip a beat. 😊"
+                message: "Every single moment with you is perfect. Your smile, your laugh, your presence—everything makes my heart skip a beat. These are the moments that make life worth living."
             },
             {
                 title: "My Everything",
-                message: "You complete my universe. Without you, my world would be incomplete. You are my everything. 💖"
+                message: "You complete my universe in ways I could never explain. Without you, my world would be incomplete. You are my everything, my reason, my purpose."
             },
             {
                 title: "Forever Yours",
-                message: "My heart chose you before my mind caught up. Forever yours, my love. 💕"
+                message: "My heart chose you before my mind caught up. You are my forever person, my soulmate, my everything. I promise to love you forever and always."
             }
         ];
+
+        function checkAccess() {
+            const name = document.getElementById('nameInput').value.trim().toLowerCase();
+            const pass = document.getElementById('passInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            if (name === 'rishika' && pass === '2512') {
+                document.getElementById('loginScreen').classList.add('hidden');
+                document.getElementById('mainContent').style.display = 'flex';
+                initAnimation();
+                errorMsg.style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block';
+                setTimeout(() => {
+                    errorMsg.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        document.getElementById('passInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkAccess();
+        });
+
+        document.getElementById('nameInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') document.getElementById('passInput').focus();
+        });
 
         function openModal(index) {
             const data = starData[index];
@@ -463,69 +699,76 @@
             }
         }
 
-        const canvas = document.getElementById('galaxyCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // Galaxy Animation
+        let animationInitialized = false;
 
-        let particles = [];
-        const particleCount = 200;
+        function initAnimation() {
+            if (animationInitialized) return;
+            animationInitialized = true;
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 1.5;
-                this.opacity = Math.random() * 0.5 + 0.3;
-                this.twinkleSpeed = Math.random() * 0.02 + 0.01;
-            }
+            const canvas = document.getElementById('galaxyCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-                this.opacity += this.twinkleSpeed;
-                if (this.opacity > 0.8 || this.opacity < 0.2) {
-                    this.twinkleSpeed *= -1;
+            let particles = [];
+            const particleCount = 250;
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.3;
+                    this.vy = (Math.random() - 0.5) * 0.3;
+                    this.radius = Math.random() * 1.2;
+                    this.opacity = Math.random() * 0.6 + 0.2;
+                    this.twinkleSpeed = Math.random() * 0.025 + 0.01;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                    if (this.y > canvas.height) this.y = 0;
+                    this.opacity += this.twinkleSpeed;
+                    if (this.opacity > 0.8 || this.opacity < 0.2) {
+                        this.twinkleSpeed *= -1;
+                    }
+                }
+
+                draw() {
+                    ctx.fillStyle = `rgba(255, 200, 255, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fill();
                 }
             }
 
-            draw() {
-                ctx.fillStyle = `rgba(255, 200, 255, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
             for (let i = 0; i < particleCount; i++) {
                 particles.push(new Particle());
             }
-        }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animate);
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
         }
 
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            if (animationInitialized) {
+                const canvas = document.getElementById('galaxyCanvas');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
         });
-
-        initParticles();
-        animate();
     </script>
 </body>
 </html>

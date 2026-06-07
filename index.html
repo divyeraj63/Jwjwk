@@ -65,18 +65,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: glow 2s ease-in-out infinite;
         }
 
         .header p {
             font-size: 1.3em;
             color: #b0e0e6;
             margin-top: 10px;
-        }
-
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 20px rgba(255, 105, 180, 0.8); }
-            50% { text-shadow: 0 0 40px rgba(255, 20, 147, 0.8); }
         }
 
         .stars-section {
@@ -229,7 +223,6 @@
             50% { transform: scale(1.2); }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2em;
@@ -246,7 +239,6 @@
             }
         }
 
-        /* Scroll indicator */
         .scroll-hint {
             position: fixed;
             bottom: 20px;
@@ -263,7 +255,6 @@
             50% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* Modal for photo + star name */
         .modal {
             display: none;
             position: fixed;
@@ -355,7 +346,6 @@
         </div>
 
         <div class="stars-section">
-            <!-- Star 1: Your Beauty -->
             <div class="star-card" onclick="openModal(0)">
                 <div class="star-icon">⭐</div>
                 <div class="star-title">Your Beauty</div>
@@ -365,7 +355,6 @@
                 </div>
             </div>
 
-            <!-- Star 2: Just Us -->
             <div class="star-card" onclick="openModal(1)">
                 <div class="star-icon">💫</div>
                 <div class="star-title">Just Us</div>
@@ -375,7 +364,6 @@
                 </div>
             </div>
 
-            <!-- Star 3: Perfect Moments -->
             <div class="star-card" onclick="openModal(2)">
                 <div class="star-icon">🌟</div>
                 <div class="star-title">Perfect Moments</div>
@@ -385,7 +373,6 @@
                 </div>
             </div>
 
-            <!-- Star 4: My Everything -->
             <div class="star-card" onclick="openModal(3)">
                 <div class="star-icon">✨</div>
                 <div class="star-title">My Everything</div>
@@ -395,7 +382,6 @@
                 </div>
             </div>
 
-            <!-- Star 5: Forever Yours -->
             <div class="star-card" onclick="openModal(4)">
                 <div class="star-icon">💖</div>
                 <div class="star-title">Forever Yours</div>
@@ -422,16 +408,13 @@
         </div>
     </div>
 
-    <!-- Modal for displaying star details -->
     <div id="photoModal" class="modal">
         <div class="modal-content">
             <h2 id="modalTitle">Star Name</h2>
             <div class="modal-photo">
                 <img id="modalPhoto" src="" alt="Our memory">
             </div>
-            <div class="modal-text" id="modalText">
-                Your special memory and message here
-            </div>
+            <div class="modal-text" id="modalText">Your special memory</div>
             <button class="close-modal" onclick="closeModal()">Close</button>
         </div>
     </div>
@@ -439,47 +422,33 @@
     <div class="scroll-hint">↓ Scroll to explore ↓</div>
 
     <script>
-        // Base64 encoded images data
-        const imageData = {
-            img2: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAC8ALwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ydhIWGh4iJipKTlJWWm5ydhIWGh4iJipKTlJWWm5ydhYWGh4iJipKTlJWWm5ydhYaGiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==",
-            img3: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAC8ALwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ydhIWGh4iJipKTlJWWm5ydhIWGh4iJipKTlJWWm5ydhYWGh4iJipKTlJWWm5ydhYaGiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q=="
-        };
-
-        // Star data with embedded images
         const starData = [
             {
                 title: "Your Beauty",
-                message: "You are absolutely stunning in every way. Your elegance and grace take my breath away every single day. 💕",
-                photoKey: "img2"
+                message: "You are absolutely stunning in every way. Your elegance and grace take my breath away every single day. 💕"
             },
             {
                 title: "Just Us",
-                message: "In this moment, it's just you and me. Two hearts beating as one, forever connected. 💑",
-                photoKey: "img3"
+                message: "In this moment, it's just you and me. Two hearts beating as one, forever connected. 💑"
             },
             {
                 title: "Perfect Moments",
-                message: "Every moment with you is perfect. Your smile makes my heart skip a beat. 😊",
-                photoKey: "img3"
+                message: "Every moment with you is perfect. Your smile makes my heart skip a beat. 😊"
             },
             {
                 title: "My Everything",
-                message: "You complete my universe. Without you, my world would be incomplete. You are my everything. 💖",
-                photoKey: "img3"
+                message: "You complete my universe. Without you, my world would be incomplete. You are my everything. 💖"
             },
             {
                 title: "Forever Yours",
-                message: "My heart chose you before my mind caught up. Forever yours, my love. 💕",
-                photoKey: "img3"
+                message: "My heart chose you before my mind caught up. Forever yours, my love. 💕"
             }
         ];
 
-        // Modal functions
         function openModal(index) {
             const data = starData[index];
             document.getElementById('modalTitle').textContent = data.title;
             document.getElementById('modalText').textContent = data.message;
-            document.getElementById('modalPhoto').src = imageData[data.photoKey];
             document.getElementById('photoModal').classList.add('show');
         }
 
@@ -487,7 +456,6 @@
             document.getElementById('photoModal').classList.remove('show');
         }
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('photoModal');
             if (event.target == modal) {
@@ -495,10 +463,8 @@
             }
         }
 
-        // Galaxy animation background
         const canvas = document.getElementById('galaxyCanvas');
         const ctx = canvas.getContext('2d');
-
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
@@ -519,12 +485,10 @@
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
-
                 if (this.x < 0) this.x = canvas.width;
                 if (this.x > canvas.width) this.x = 0;
                 if (this.y < 0) this.y = canvas.height;
                 if (this.y > canvas.height) this.y = 0;
-
                 this.opacity += this.twinkleSpeed;
                 if (this.opacity > 0.8 || this.opacity < 0.2) {
                     this.twinkleSpeed *= -1;
@@ -548,12 +512,10 @@
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             particles.forEach(particle => {
                 particle.update();
                 particle.draw();
             });
-
             requestAnimationFrame(animate);
         }
 
@@ -562,7 +524,6 @@
             canvas.height = window.innerHeight;
         });
 
-        // Initialize
         initParticles();
         animate();
     </script>

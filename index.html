@@ -165,6 +165,7 @@
             font-size: 0.9em;
             margin-bottom: 15px;
             border: 1px solid rgba(138, 43, 226, 0.3);
+            overflow: hidden;
         }
 
         .photo-placeholder img {
@@ -275,6 +276,7 @@
             backdrop-filter: blur(5px);
             align-items: center;
             justify-content: center;
+            overflow: auto;
         }
 
         .modal.show {
@@ -291,6 +293,7 @@
             text-align: center;
             color: #b0e0e6;
             box-shadow: 0 0 50px rgba(138, 43, 226, 0.6);
+            margin: auto;
         }
 
         .modal-content h2 {
@@ -352,50 +355,50 @@
         </div>
 
         <div class="stars-section">
-            <!-- Star 1: Our Beginning -->
+            <!-- Star 1: Your Beauty -->
             <div class="star-card" onclick="openModal(0)">
                 <div class="star-icon">⭐</div>
-                <div class="star-title">Our Beginning</div>
-                <div class="star-description">The day our story started shining bright</div>
+                <div class="star-title">Your Beauty</div>
+                <div class="star-description">Elegance and grace in every moment</div>
                 <div class="photo-placeholder">
                     <span>✨ Click to see ✨</span>
                 </div>
             </div>
 
-            <!-- Star 2: Unforgettable Moments -->
+            <!-- Star 2: Just Us -->
             <div class="star-card" onclick="openModal(1)">
                 <div class="star-icon">💫</div>
-                <div class="star-title">Unforgettable Moments</div>
-                <div class="star-description">Every smile, every laugh with you</div>
+                <div class="star-title">Just Us</div>
+                <div class="star-description">Two hearts, infinite love</div>
                 <div class="photo-placeholder">
                     <span>✨ Click to see ✨</span>
                 </div>
             </div>
 
-            <!-- Star 3: You Complete Me -->
+            <!-- Star 3: Perfect Moments -->
             <div class="star-card" onclick="openModal(2)">
                 <div class="star-icon">🌟</div>
-                <div class="star-title">You Complete Me</div>
-                <div class="star-description">You are my missing piece, my soulmate</div>
+                <div class="star-title">Perfect Moments</div>
+                <div class="star-description">Every smile means everything to me</div>
                 <div class="photo-placeholder">
                     <span>✨ Click to see ✨</span>
                 </div>
             </div>
 
-            <!-- Star 4: Love & Laughter -->
+            <!-- Star 4: My Everything -->
             <div class="star-card" onclick="openModal(3)">
                 <div class="star-icon">✨</div>
-                <div class="star-title">Love & Laughter</div>
-                <div class="star-description">With you, life is an endless adventure</div>
+                <div class="star-title">My Everything</div>
+                <div class="star-description">You complete my universe</div>
                 <div class="photo-placeholder">
                     <span>✨ Click to see ✨</span>
                 </div>
             </div>
 
-            <!-- Star 5: Forever & Always -->
+            <!-- Star 5: Forever Yours -->
             <div class="star-card" onclick="openModal(4)">
                 <div class="star-icon">💖</div>
-                <div class="star-title">Forever & Always</div>
+                <div class="star-title">Forever Yours</div>
                 <div class="star-description">My heart chose you before my mind caught up</div>
                 <div class="photo-placeholder">
                     <span>✨ Click to see ✨</span>
@@ -424,8 +427,7 @@
         <div class="modal-content">
             <h2 id="modalTitle">Star Name</h2>
             <div class="modal-photo">
-                <img id="modalPhoto" src="" alt="Our memory" style="display:none;">
-                <span id="photoPlaceholder">📸 Add your photo here 📸</span>
+                <img id="modalPhoto" src="" alt="Our memory">
             </div>
             <div class="modal-text" id="modalText">
                 Your special memory and message here
@@ -437,32 +439,38 @@
     <div class="scroll-hint">↓ Scroll to explore ↓</div>
 
     <script>
-        // Star data - customize with your photos and messages
+        // Base64 encoded images data
+        const imageData = {
+            img2: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAC8ALwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ydhIWGh4iJipKTlJWWm5ydhIWGh4iJipKTlJWWm5ydhYWGh4iJipKTlJWWm5ydhYaGiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q==",
+            img3: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAC8ALwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ydhIWGh4iJipKTlJWWm5ydhIWGh4iJipKTlJWWm5ydhYWGh4iJipKTlJWWm5ydhYaGiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/2Q=="
+        };
+
+        // Star data with embedded images
         const starData = [
             {
-                title: "Our Beginning",
-                message: "The moment we met, I knew my life would never be the same. You brought color to my world. 💕",
-                photo: null // Add photo URL here
+                title: "Your Beauty",
+                message: "You are absolutely stunning in every way. Your elegance and grace take my breath away every single day. 💕",
+                photoKey: "img2"
             },
             {
-                title: "Unforgettable Moments",
-                message: "Every laugh with you is pure magic. These are the moments I treasure forever. 😊",
-                photo: null // Add photo URL here
+                title: "Just Us",
+                message: "In this moment, it's just you and me. Two hearts beating as one, forever connected. 💑",
+                photoKey: "img3"
             },
             {
-                title: "You Complete Me",
-                message: "You are the missing piece of my puzzle. With you, I am complete. 💑",
-                photo: null // Add photo URL here
+                title: "Perfect Moments",
+                message: "Every moment with you is perfect. Your smile makes my heart skip a beat. 😊",
+                photoKey: "img3"
             },
             {
-                title: "Love & Laughter",
-                message: "Adventures with you are unforgettable. You make ordinary days extraordinary. 🎉",
-                photo: null // Add photo URL here
+                title: "My Everything",
+                message: "You complete my universe. Without you, my world would be incomplete. You are my everything. 💖",
+                photoKey: "img3"
             },
             {
-                title: "Forever & Always",
-                message: "You are my forever person. My soulmate, my love, my everything. 💖",
-                photo: null // Add photo URL here
+                title: "Forever Yours",
+                message: "My heart chose you before my mind caught up. Forever yours, my love. 💕",
+                photoKey: "img3"
             }
         ];
 
@@ -471,19 +479,7 @@
             const data = starData[index];
             document.getElementById('modalTitle').textContent = data.title;
             document.getElementById('modalText').textContent = data.message;
-            
-            const photoImg = document.getElementById('modalPhoto');
-            const photoPlaceholder = document.getElementById('photoPlaceholder');
-            
-            if (data.photo) {
-                photoImg.src = data.photo;
-                photoImg.style.display = 'block';
-                photoPlaceholder.style.display = 'none';
-            } else {
-                photoImg.style.display = 'none';
-                photoPlaceholder.style.display = 'flex';
-            }
-            
+            document.getElementById('modalPhoto').src = imageData[data.photoKey];
             document.getElementById('photoModal').classList.add('show');
         }
 
@@ -569,16 +565,6 @@
         // Initialize
         initParticles();
         animate();
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>

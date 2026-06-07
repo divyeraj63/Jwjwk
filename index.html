@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rishika! 💖</title>
+    <style>
+        /* Global & Aesthetic Styles */
+        :root {
+            --bg-color: #fbf5f3;
+            --primary-color: #e2b4bd;
+            --accent-color: #9b72aa;
+            --text-color: #4f3b43;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        h1, h2 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* Buttons & Inputs */
+        input[type="password"], input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            margin-bottom: 20px;
+            outline: none;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* Photo Placeholder */
+        .photo-frame {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #e2b4bd, #9b72aa);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 5px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Elusive Button Setup */
+        .btn-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
+            height: 60px;
+        }
+
+        #btn-no {
+            position: absolute;
+            background-color: #f4978e;
+            transition: all 0.2s ease;
+        }
+
+        /* Virtual Cake */
+        .cake {
+            width: 150px;
+            height: 100px;
+            background: #f48c06;
+            margin: 40px auto 10px;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            box-shadow: inset 0 10px 0 #faa307;
+        }
+
+        .cake::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: #fff;
+            top: 20px;
+            left: 0;
+            border-radius: 10px;
+        }
+
+        .candles-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            position: absolute;
+            top: -30px;
+            width: 100%;
+        }
+
+        .candle {
+            width: 8px;
+            height: 30px;
+            background: linear-gradient(to bottom, #e63946, #ffb703);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .flame {
+            width: 12px;
+            height: 18px;
+            background: #ffb703;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            top: -16px;
+            left: -2px;
+            box-shadow: 0 0 10px #ffb703;
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .candle.blown .flame {
+            display: none;
+        }
+
+        /* Letter Box */
+        .letter {
+            background: #fff3f8;
+            padding: 20px;
+            border-left: 5px solid var(--primary-color);
+            border-radius: 5px;
+            text-align: left;
+            margin-top: 20px;
+            white-space: pre-line;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+
+        .letter h3 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .letter p {
+            text-align: center;
+            white-space: normal;
+        }
+
+        /* Confetti Animation */
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotateZ(360deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            animation: confetti-fall 3s linear forwards;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="screen-lock" class="container">
+        <h2>🔒 Private Access</h2>
+        <p>Enter the special date to enter Rishika's birthday escape.</p>
+        <input type="password" id="password-input" placeholder="DDMM">
+        <button onclick="checkPassword()">Unlock</button>
+        <p id="lock-error" style="color: red; margin-top: 10px; font-size: 14px; display: none;">Incorrect code, try again! 💕</p>
+    </div>
+
+    <div id="screen-quiz" class="container hidden">
+        <h2 id="quiz-title">Let's see how well you remember...</h2>
+        <div class="photo-frame">
+            <span>📸 Photo Placeholder</span>
+        </div>
+        <p id="quiz-question">Where did we take this picture?</p>
+        <input type="text" id="quiz-answer" placeholder="Your answer...">
+        <button onclick="nextQuiz()">Submit</button>
+    </div>
+
+    <div id="screen-love" class="container hidden">
+        <h2>Rishika... ✨</h2>
+        <div class="photo-frame">
+            <span>💕 Photo Placeholder</span>
+        </div>
+        <p style="font-size: 18px; font-weight: bold;">Do you really, truly love me?</p>
+        <div class="btn-container">
+            <button id="btn-yes" onclick="proceedToCake()">Yes, I do! 💖</button>
+            <button id="btn-no">No 😢</button>
+        </div>
+    </div>
+
+    <div id="screen-cake" class="container hidden">
+        <h1>✨ Happy Birthday, Rishika! ✨</h1>
+        <p>Tap each candle to blow them out and make a wish!</p>
+        
+        <div class="cake">
+            <div class="candles-container">
+                <div class="candle" onclick="blowCandle(this)"><div class="flame"></div></div>
+                <div class="candle" onclick="blowCandle(this)"><div class="flame"></div></div>
+                <div class="candle" onclick="blowCandle(this)"><div class="flame"></div></div>
+            </div>
+        </div>
+
+        <div id="secret-letter" class="letter hidden">
+            <h3>💌 A Secret Letter For You</h3>
+            <p id="letter-text">
+                Dearest Rishika,
+
+                Happy Birthday to the most amazing person in my life. Every single day with you feels like a blessing, and I am so grateful for all the laughs, inside jokes, and beautiful memories we share. 
+
+                May this year bring you endless happiness, success, and everything your heart desires. I love you more than words can say.
+
+                Forever and always,
+                Your Special Someone ❤️
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // 1. Password Verification
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            if (input === '2512') {
+                document.getElementById('screen-lock').classList.add('hidden');
+                document.getElementById('screen-quiz').classList.remove('hidden');
+            } else {
+                document.getElementById('lock-error').style.display = 'block';
+            }
+        }
+
+        // Allow Enter key to unlock
+        document.getElementById('password-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        // 2. Quiz Progression
+        let currentStep = 0;
+        const quizData = [
+            {
+                question: "What is our absolute favorite thing to do together?",
+                image: "Photo 1"
+            },
+            {
+                question: "What is my favorite memory of us?",
+                image: "Photo 2"
+            },
+            {
+                question: "What is one thing that always makes us smile?",
+                image: "Photo 3"
+            },
+            {
+                question: "Where do you think we will go next?",
+                image: "Photo 4"
+            }
+        ];
+
+        function nextQuiz() {
+            const answer = document.getElementById('quiz-answer').value.trim();
+            if (!answer) return alert("Please type an answer! 💕");
+
+            currentStep++;
+            document.getElementById('quiz-answer').value = ""; // Clear input
+
+            if (currentStep < quizData.length) {
+                document.getElementById('quiz-question').innerText = quizData[currentStep].question;
+            } else {
+                document.getElementById('screen-quiz').classList.add('hidden');
+                document.getElementById('screen-love').classList.remove('hidden');
+            }
+        }
+
+        // Allow Enter key in quiz
+        document.getElementById('quiz-answer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') nextQuiz();
+        });
+
+        // 3. Elusive "No" Button Mechanics
+        const noBtn = document.getElementById('btn-no');
+        
+        function moveNoButton() {
+            const container = document.querySelector('#screen-love .container') || document.querySelector('#screen-love');
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+
+            const maxX = containerRect.width - 100;
+            const maxY = containerRect.height - 60;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('click', moveNoButton);
+
+        // 4. Proceed to Birthday Cake
+        function proceedToCake() {
+            document.getElementById('screen-love').classList.add('hidden');
+            document.getElementById('screen-cake').classList.remove('hidden');
+            createConfetti();
+        }
+
+        // 5. Candle Blowing Engine
+        let blownCount = 0;
+        function blowCandle(candleCard) {
+            if (!candleCard.classList.contains('blown')) {
+                candleCard.classList.add('blown');
+                blownCount++;
+                
+                if (blownCount === 3) {
+                    setTimeout(() => {
+                        document.getElementById('secret-letter').classList.remove('hidden');
+                        document.getElementById('secret-letter').scrollIntoView({ behavior: 'smooth' });
+                        createConfetti();
+                    }, 800);
+                }
+            }
+        }
+
+        // 6. Confetti Effect
+        function createConfetti() {
+            const colors = ['#e2b4bd', '#9b72aa', '#f4978e', '#ffb703', '#faa307'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3500);
+            }
+        }
+    </script>
+</body>
+</html>

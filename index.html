@@ -3,405 +3,582 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Rishika! 💖</title>
+    <title>A Journey Through Our Galaxy ✨</title>
     <style>
-        /* Global & Aesthetic Styles */
-        :root {
-            --bg-color: #fbf5f3;
-            --primary-color: #e2b4bd;
-            --accent-color: #9b72aa;
-            --text-color: #4f3b43;
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
             overflow-x: hidden;
+            font-family: 'Arial', sans-serif;
+            background: #000;
+        }
+
+        .galaxy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 50%, #1a0033 0%, #000 100%);
+            z-index: 0;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            display: block;
         }
 
         .container {
-            width: 90%;
-            max-width: 500px;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: all 0.5s ease;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        h1, h2 {
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        p {
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        /* Buttons & Inputs */
-        input[type="password"], input[type="text"] {
+            position: relative;
+            z-index: 2;
             width: 100%;
-            padding: 12px;
-            border: 2px solid var(--primary-color);
-            border-radius: 25px;
-            margin-bottom: 20px;
-            outline: none;
-            text-align: center;
-            font-size: 16px;
-        }
-
-        button {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-
-        button:hover {
-            background-color: var(--accent-color);
-            transform: scale(1.05);
-        }
-
-        /* Photo Placeholder */
-        .photo-frame {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #e2b4bd, #9b72aa);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            overflow: hidden;
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .header {
+            padding: 40px 20px;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            border: 5px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            color: white;
-            font-size: 14px;
-            text-align: center;
-            padding: 20px;
         }
 
-        .photo-frame img {
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ff69b4, #ff1493, #c71585);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            color: #b0e0e6;
+            margin-top: 10px;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 105, 180, 0.8); }
+            50% { text-shadow: 0 0 40px rgba(255, 20, 147, 0.8); }
+        }
+
+        .stars-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .star-card {
+            background: rgba(20, 20, 60, 0.6);
+            border: 2px solid rgba(138, 43, 226, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+
+        .star-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.8);
+            border-color: rgba(255, 105, 180, 0.8);
+            background: rgba(20, 20, 60, 0.8);
+        }
+
+        .star-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        .star-card:nth-child(2) .star-icon {
+            animation-delay: 0.5s;
+        }
+
+        .star-card:nth-child(3) .star-icon {
+            animation-delay: 1s;
+        }
+
+        .star-card:nth-child(4) .star-icon {
+            animation-delay: 1.5s;
+        }
+
+        .star-card:nth-child(5) .star-icon {
+            animation-delay: 2s;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .star-title {
+            font-size: 1.5em;
+            color: #ff69b4;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .star-description {
+            font-size: 0.9em;
+            color: #b0e0e6;
+            margin-bottom: 15px;
+            min-height: 40px;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a0033, #2d0a4e);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b0e0e6;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .music-section {
+            width: 100%;
+            background: rgba(20, 20, 60, 0.8);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid rgba(138, 43, 226, 0.5);
+            margin-top: 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .music-title {
+            font-size: 2em;
+            color: #ff69b4;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+        }
+
+        .spotify-embed {
+            display: inline-block;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+        }
+
+        .final-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #b0e0e6;
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .final-message .heart {
+            color: #ff69b4;
+            font-size: 1.5em;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .stars-section {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 20px;
+            }
+
+            .star-icon {
+                font-size: 3em;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 105, 180, 0.6);
+            animation: bounce 2s infinite;
+            z-index: 10;
+            font-size: 1.2em;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Modal for photo + star name */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(20, 20, 60, 0.95);
+            border: 2px solid rgba(138, 43, 226, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            color: #b0e0e6;
+            box-shadow: 0 0 50px rgba(138, 43, 226, 0.6);
+        }
+
+        .modal-content h2 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .modal-photo {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #1a0033, #2d0a4e);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            overflow: hidden;
+        }
+
+        .modal-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* Elusive Button Setup */
-        .btn-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-top: 20px;
-            position: relative;
-            height: 60px;
+        .modal-text {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
-        #btn-no {
-            position: absolute;
-            background-color: #f4978e;
-            transition: all 0.2s ease;
-        }
-
-        /* Virtual Cake */
-        .cake {
-            width: 150px;
-            height: 100px;
-            background: #f48c06;
-            margin: 40px auto 10px;
-            border-radius: 10px 10px 0 0;
-            position: relative;
-            box-shadow: inset 0 10px 0 #faa307;
-        }
-
-        .cake::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 20px;
-            background: #fff;
-            top: 20px;
-            left: 0;
-            border-radius: 10px;
-        }
-
-        .candles-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            position: absolute;
-            top: -30px;
-            width: 100%;
-        }
-
-        .candle {
-            width: 8px;
-            height: 30px;
-            background: linear-gradient(to bottom, #e63946, #ffb703);
-            position: relative;
+        .close-modal {
+            background: rgba(138, 43, 226, 0.5);
+            color: #ff69b4;
+            border: 1px solid rgba(138, 43, 226, 0.8);
+            padding: 10px 20px;
+            border-radius: 15px;
             cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
         }
 
-        .flame {
-            width: 12px;
-            height: 18px;
-            background: #ffb703;
-            border-radius: 50% 50% 20% 20%;
-            position: absolute;
-            top: -16px;
-            left: -2px;
-            box-shadow: 0 0 10px #ffb703;
-            animation: flicker 0.1s infinite alternate;
-        }
-
-        @keyframes flicker {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-
-        .candle.blown .flame {
-            display: none;
-        }
-
-        /* Letter Box */
-        .letter {
-            background: #fff3f8;
-            padding: 20px;
-            border-left: 5px solid var(--primary-color);
-            border-radius: 5px;
-            text-align: left;
-            margin-top: 20px;
-            white-space: pre-line;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
-        }
-
-        .letter h3 {
-            text-align: center;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-        }
-
-        .letter p {
-            text-align: center;
-            white-space: normal;
-        }
-
-        /* Confetti Animation */
-        @keyframes confetti-fall {
-            to {
-                transform: translateY(100vh) rotateZ(360deg);
-                opacity: 0;
-            }
-        }
-
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: var(--primary-color);
-            animation: confetti-fall 3s linear forwards;
-            pointer-events: none;
+        .close-modal:hover {
+            background: rgba(138, 43, 226, 0.8);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.6);
         }
     </style>
 </head>
 <body>
-
-    <div id="screen-lock" class="container">
-        <h2>🔒 Private Access</h2>
-        <p>Enter the special date to enter Rishika's birthday escape.</p>
-        <input type="password" id="password-input" placeholder="DDMM">
-        <button onclick="checkPassword()">Unlock</button>
-        <p id="lock-error" style="color: red; margin-top: 10px; font-size: 14px; display: none;">Incorrect code, try again! 💕</p>
-    </div>
-
-    <div id="screen-quiz" class="container hidden">
-        <h2 id="quiz-title">Let's see how well you remember...</h2>
-        <div class="photo-frame">
-            <span>📸 Photo Placeholder</span>
+    <div class="galaxy-background"></div>
+    <canvas id="galaxyCanvas"></canvas>
+    
+    <div class="container">
+        <div class="header">
+            <h1>🌌 A Journey Through Our Galaxy 🌌</h1>
+            <p>Click on each star to discover our precious moments</p>
         </div>
-        <p id="quiz-question">Where did we take this picture?</p>
-        <input type="text" id="quiz-answer" placeholder="Your answer...">
-        <button onclick="nextQuiz()">Submit</button>
-    </div>
 
-    <div id="screen-love" class="container hidden">
-        <h2>Rishika... ✨</h2>
-        <div class="photo-frame">
-            <span>💕 Photo Placeholder</span>
-        </div>
-        <p style="font-size: 18px; font-weight: bold;">Do you really, truly love me?</p>
-        <div class="btn-container">
-            <button id="btn-yes" onclick="proceedToCake()">Yes, I do! 💖</button>
-            <button id="btn-no">No 😢</button>
-        </div>
-    </div>
+        <div class="stars-section">
+            <!-- Star 1: Our Beginning -->
+            <div class="star-card" onclick="openModal(0)">
+                <div class="star-icon">⭐</div>
+                <div class="star-title">Our Beginning</div>
+                <div class="star-description">The day our story started shining bright</div>
+                <div class="photo-placeholder">
+                    <span>✨ Click to see ✨</span>
+                </div>
+            </div>
 
-    <div id="screen-cake" class="container hidden">
-        <h1>✨ Happy Birthday, Rishika! ✨</h1>
-        <p>Tap each candle to blow them out and make a wish!</p>
-        
-        <div class="cake">
-            <div class="candles-container">
-                <div class="candle" onclick="blowCandle(this)"><div class="flame"></div></div>
-                <div class="candle" onclick="blowCandle(this)"><div class="flame"></div></div>
-                <div class="candle" onclick="blowCandle(this)"><div class="flame"></div></div>
+            <!-- Star 2: Unforgettable Moments -->
+            <div class="star-card" onclick="openModal(1)">
+                <div class="star-icon">💫</div>
+                <div class="star-title">Unforgettable Moments</div>
+                <div class="star-description">Every smile, every laugh with you</div>
+                <div class="photo-placeholder">
+                    <span>✨ Click to see ✨</span>
+                </div>
+            </div>
+
+            <!-- Star 3: You Complete Me -->
+            <div class="star-card" onclick="openModal(2)">
+                <div class="star-icon">🌟</div>
+                <div class="star-title">You Complete Me</div>
+                <div class="star-description">You are my missing piece, my soulmate</div>
+                <div class="photo-placeholder">
+                    <span>✨ Click to see ✨</span>
+                </div>
+            </div>
+
+            <!-- Star 4: Love & Laughter -->
+            <div class="star-card" onclick="openModal(3)">
+                <div class="star-icon">✨</div>
+                <div class="star-title">Love & Laughter</div>
+                <div class="star-description">With you, life is an endless adventure</div>
+                <div class="photo-placeholder">
+                    <span>✨ Click to see ✨</span>
+                </div>
+            </div>
+
+            <!-- Star 5: Forever & Always -->
+            <div class="star-card" onclick="openModal(4)">
+                <div class="star-icon">💖</div>
+                <div class="star-title">Forever & Always</div>
+                <div class="star-description">My heart chose you before my mind caught up</div>
+                <div class="photo-placeholder">
+                    <span>✨ Click to see ✨</span>
+                </div>
             </div>
         </div>
 
-        <div id="secret-letter" class="letter hidden">
-            <h3>💌 A Secret Letter For You</h3>
-            <p id="letter-text">
-                Dearest Rishika,
+        <div class="music-section">
+            <div class="music-title">🎵 Our Song 🎵</div>
+            <div class="spotify-embed">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/1hQia6rxgfM1ly2hE3StWp?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
 
-                Happy Birthday to the most amazing person in my life. Every single day with you feels like a blessing, and I am so grateful for all the laughs, inside jokes, and beautiful memories we share. 
-
-                May this year bring you endless happiness, success, and everything your heart desires. I love you more than words can say.
-
-                Forever and always,
-                Your Special Someone ❤️
-            </p>
+        <div class="final-message">
+            <div>
+                <p style="font-size: 2em; margin-bottom: 20px;">Happy Birthday to the brightest star in my sky! 🌟</p>
+                <p style="margin-bottom: 20px;">You make every moment magical, every day brighter, and every dream possible. Thank you for being the love of my life.</p>
+                <p style="margin-bottom: 20px;">Forever yours, <span class="heart">❤️</span></p>
+            </div>
         </div>
     </div>
 
+    <!-- Modal for displaying star details -->
+    <div id="photoModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Star Name</h2>
+            <div class="modal-photo">
+                <img id="modalPhoto" src="" alt="Our memory" style="display:none;">
+                <span id="photoPlaceholder">📸 Add your photo here 📸</span>
+            </div>
+            <div class="modal-text" id="modalText">
+                Your special memory and message here
+            </div>
+            <button class="close-modal" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <div class="scroll-hint">↓ Scroll to explore ↓</div>
+
     <script>
-        // 1. Password Verification
-        function checkPassword() {
-            const input = document.getElementById('password-input').value;
-            if (input === '2512') {
-                document.getElementById('screen-lock').classList.add('hidden');
-                document.getElementById('screen-quiz').classList.remove('hidden');
-            } else {
-                document.getElementById('lock-error').style.display = 'block';
-            }
-        }
-
-        // Allow Enter key to unlock
-        document.getElementById('password-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') checkPassword();
-        });
-
-        // 2. Quiz Progression
-        let currentStep = 0;
-        const quizData = [
+        // Star data - customize with your photos and messages
+        const starData = [
             {
-                question: "What is our absolute favorite thing to do together?",
-                image: "Photo 1"
+                title: "Our Beginning",
+                message: "The moment we met, I knew my life would never be the same. You brought color to my world. 💕",
+                photo: null // Add photo URL here
             },
             {
-                question: "What is my favorite memory of us?",
-                image: "Photo 2"
+                title: "Unforgettable Moments",
+                message: "Every laugh with you is pure magic. These are the moments I treasure forever. 😊",
+                photo: null // Add photo URL here
             },
             {
-                question: "What is one thing that always makes us smile?",
-                image: "Photo 3"
+                title: "You Complete Me",
+                message: "You are the missing piece of my puzzle. With you, I am complete. 💑",
+                photo: null // Add photo URL here
             },
             {
-                question: "Where do you think we will go next?",
-                image: "Photo 4"
+                title: "Love & Laughter",
+                message: "Adventures with you are unforgettable. You make ordinary days extraordinary. 🎉",
+                photo: null // Add photo URL here
+            },
+            {
+                title: "Forever & Always",
+                message: "You are my forever person. My soulmate, my love, my everything. 💖",
+                photo: null // Add photo URL here
             }
         ];
 
-        function nextQuiz() {
-            const answer = document.getElementById('quiz-answer').value.trim();
-            if (!answer) return alert("Please type an answer! 💕");
-
-            currentStep++;
-            document.getElementById('quiz-answer').value = ""; // Clear input
-
-            if (currentStep < quizData.length) {
-                document.getElementById('quiz-question').innerText = quizData[currentStep].question;
+        // Modal functions
+        function openModal(index) {
+            const data = starData[index];
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalText').textContent = data.message;
+            
+            const photoImg = document.getElementById('modalPhoto');
+            const photoPlaceholder = document.getElementById('photoPlaceholder');
+            
+            if (data.photo) {
+                photoImg.src = data.photo;
+                photoImg.style.display = 'block';
+                photoPlaceholder.style.display = 'none';
             } else {
-                document.getElementById('screen-quiz').classList.add('hidden');
-                document.getElementById('screen-love').classList.remove('hidden');
+                photoImg.style.display = 'none';
+                photoPlaceholder.style.display = 'flex';
+            }
+            
+            document.getElementById('photoModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('photoModal').classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('photoModal');
+            if (event.target == modal) {
+                closeModal();
             }
         }
 
-        // Allow Enter key in quiz
-        document.getElementById('quiz-answer').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') nextQuiz();
-        });
+        // Galaxy animation background
+        const canvas = document.getElementById('galaxyCanvas');
+        const ctx = canvas.getContext('2d');
 
-        // 3. Elusive "No" Button Mechanics
-        const noBtn = document.getElementById('btn-no');
-        
-        function moveNoButton() {
-            const container = document.querySelector('#screen-love .container') || document.querySelector('#screen-love');
-            const containerRect = container.getBoundingClientRect();
-            const btnRect = noBtn.getBoundingClientRect();
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-            const maxX = containerRect.width - 100;
-            const maxY = containerRect.height - 60;
+        let particles = [];
+        const particleCount = 200;
 
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 1.5;
+                this.opacity = Math.random() * 0.5 + 0.3;
+                this.twinkleSpeed = Math.random() * 0.02 + 0.01;
+            }
 
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
-        }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
 
-        noBtn.addEventListener('mouseenter', moveNoButton);
-        noBtn.addEventListener('click', moveNoButton);
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
 
-        // 4. Proceed to Birthday Cake
-        function proceedToCake() {
-            document.getElementById('screen-love').classList.add('hidden');
-            document.getElementById('screen-cake').classList.remove('hidden');
-            createConfetti();
-        }
-
-        // 5. Candle Blowing Engine
-        let blownCount = 0;
-        function blowCandle(candleCard) {
-            if (!candleCard.classList.contains('blown')) {
-                candleCard.classList.add('blown');
-                blownCount++;
-                
-                if (blownCount === 3) {
-                    setTimeout(() => {
-                        document.getElementById('secret-letter').classList.remove('hidden');
-                        document.getElementById('secret-letter').scrollIntoView({ behavior: 'smooth' });
-                        createConfetti();
-                    }, 800);
+                this.opacity += this.twinkleSpeed;
+                if (this.opacity > 0.8 || this.opacity < 0.2) {
+                    this.twinkleSpeed *= -1;
                 }
             }
-        }
 
-        // 6. Confetti Effect
-        function createConfetti() {
-            const colors = ['#e2b4bd', '#9b72aa', '#f4978e', '#ffb703', '#faa307'];
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 3500);
+            draw() {
+                ctx.fillStyle = `rgba(255, 200, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Initialize
+        initParticles();
+        animate();
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
